@@ -92,6 +92,7 @@ public function store(Request $request)
         'title' => 'required',
         'start_date' => 'nullable|date',
         'due_date' => 'nullable|date|after_or_equal:start_date',
+        'description' => 'nullable|string|max:255',
     ]);
 
     Todo::create([
