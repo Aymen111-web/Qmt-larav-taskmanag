@@ -102,6 +102,8 @@ public function store(Request $request)
         'user_id' => Auth::id(),
         'start_date' => $request->start_date,
         'due_date' => $request->due_date,
+        'description' => $request->description,
+
     ]);
 
     return redirect()->back();
@@ -130,6 +132,7 @@ public function update(Request $request, $id)
         'title' => 'required|string|max:255',
         'start_date' => 'nullable|date',
         'due_date' => 'nullable|date|after_or_equal:start_date',
+        'description' => 'nullable|string|max:255',
     ]);
 
     $todo = Todo::findOrFail($id);
@@ -138,6 +141,7 @@ public function update(Request $request, $id)
         'title' => $request->title,
         'start_date' => $request->start_date,
         'due_date' => $request->due_date,
+        'description' => $request->description,
     ]);
 
     return back();

@@ -80,6 +80,8 @@
             <input type="text" name="title" placeholder="Task..."
                    class="flex-1 border rounded-lg px-4 py-2">
 
+             <textarea name="description" placeholder="Description..."
+    class="w-full border rounded-lg px-4 py-2 text-sm"></textarea>
             <input type="date" name="start_date"
                    class="border rounded-lg px-2 py-2 text-sm">
 
@@ -177,7 +179,11 @@
                         {{ $computedStatus == 'completed' ? 'line-through text-gray-400' : 'text-gray-800' }}">
                         {{ $todo->title }}
                     </p>
-
+@if($todo->description)
+<p class="text-xs text-gray-500 mt-1">
+    {{ $todo->description }}
+</p>
+@endif
                     <p class="text-xs text-gray-400">
                         {{ $computedStatus }}
                     </p>
