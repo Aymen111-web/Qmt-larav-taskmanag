@@ -23,9 +23,13 @@
         </div>
 
         <div class="flex items-right w-1/3 justify-end">
-            <span class="text-xl font-bold text-gray-900 text-center">
-                To do App
-            </span>
+            <form method="POST" action="/logout">
+            @csrf
+            <button type="submit"
+                    class="bg-red-500 hover:bg-red-600 text-white px-5 py-2 rounded-lg shadow">
+                Logout
+            </button>
+        </form>
         </div>
 
     </div>
@@ -70,37 +74,45 @@
     </div>
 
     <!-- ADD TODO -->
-    <div class="flex flex-col sm:flex-row gap-3 items-center justify-between mb-6">
+    <div class="flex flex-col sm:flex-row gap-3 items-center  mb-6 justify-center">
 
         <form method="POST" action="/todos"
-              class="flex flex-1 gap-2 bg-white p-4 rounded-2xl shadow-sm border">
+      class="bg-white p-4 rounded-2xl shadow-sm border mb-6">
 
-            @csrf
+    @csrf
 
-            <input type="text" name="title" placeholder="Task..."
-                   class="flex-1 border rounded-lg px-4 py-2">
+    <!-- TITLE -->
+    <input type="text"
+           name="title"
+           placeholder="Task title..."
+           class="w-full border rounded-lg px-4 py-2 mb-3 focus:ring-2 focus:ring-green-500">
 
-             <textarea name="description" placeholder="Description..."
-    class="w-full border rounded-lg px-4 py-2 text-sm"></textarea>
-            <input type="date" name="start_date"
-                   class="border rounded-lg px-2 py-2 text-sm">
+    <!-- DESCRIPTION (BIG + VISIBLE) -->
+    <textarea name="description"
+              placeholder="Add description..."
+              rows="3"
+              class="w-full border rounded-lg px-4 py-2 text-sm mb-3 focus:ring-2 focus:ring-green-500"></textarea>
 
-            <input type="date" name="due_date"
-                   class="border rounded-lg px-2 py-2 text-sm">
+    <!-- DATES + BUTTON -->
+    <div class="flex flex-wrap items-center gap-2">
 
-            <button class="bg-green-500 text-white px-4 rounded-lg">
-                Add
-            </button>
+        <input type="date"
+               name="start_date"
+               class="border rounded-lg px-3 py-2 text-sm">
 
-        </form>
+        <input type="date"
+               name="due_date"
+               class="border rounded-lg px-3 py-2 text-sm">
 
-        <form method="POST" action="/logout">
-            @csrf
-            <button type="submit"
-                    class="bg-red-500 hover:bg-red-600 text-white px-5 py-2 rounded-lg shadow">
-                Logout
-            </button>
-        </form>
+        <button class="bg-green-500 hover:bg-green-600 text-white px-5 py-2 rounded-lg ml-auto">
+            Add
+        </button>
+
+    </div>
+
+</form>
+
+
 
     </div>
 
@@ -175,25 +187,30 @@
                 </div>
 
                 <div>
-                    <p class="text-sm font-medium
-                        {{ $computedStatus == 'completed' ? 'line-through text-gray-400' : 'text-gray-800' }}">
-                        {{ $todo->title }}
-                    </p>
-@if($todo->description)
-<p class="text-xs text-gray-500 mt-1">
-    {{ $todo->description }}
-</p>
-@endif
-                    <p class="text-xs text-gray-400">
-                        {{ $computedStatus }}
-                    </p>
+    <!-- TITLE -->
+    <p class="text-sm font-medium
+        {{ $computedStatus == 'completed' ? 'line-through text-gray-400' : 'text-gray-800' }}">
+        {{ $todo->title }}
+    </p>
 
-                    <p class="text-xs text-gray-400">
-                        Start: {{ $todo->start_date ?? '-' }} |
-                        Due: {{ $todo->due_date ?? '-' }}
-                    </p>
-                </div>
+    <!-- DESCRIPTION (🔥 ADD THIS) -->
+    @if($todo->description)
+        <p class="text-xs text-gray-500 mt-1">
+            {{ $todo->description }}
+        </p>
+    @endif
 
+    <!-- STATUS -->
+    <p class="text-xs text-gray-400">
+        {{ $computedStatus }}
+    </p>
+
+    <!-- DATES -->
+    <p class="text-xs text-gray-400">
+        Start: {{ $todo->start_date ?? '-' }} |
+        Due: {{ $todo->due_date ?? '-' }}
+    </p>
+</div>
             </div>
 
             <!-- RIGHT ACTIONS (UNCHANGED) -->
