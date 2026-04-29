@@ -15,74 +15,136 @@
 
 <body class="bg-[#f6f7fb] min-h-screen flex flex-col">
 
-<!-- NAVBAR (glass + sticky modern feel) -->
-<nav class="bg-white/80 backdrop-blur-md border-b shadow-sm px-6 py-4 fixed top-0 left-0 w-full z-50">
+<!-- NAVBAR (glass + fixed modern feel) -->
+<nav class="bg-white/80 backdrop-blur-md border-b border-slate-100 shadow-sm px-6 py-3 fixed top-0 left-0 w-full z-50">
     <div class="max-w-6xl mx-auto flex justify-between items-center">
 
-        <div class="text-lg font-semibold text-gray-800">
-            Hello {{ Auth::user()->name }}
+        <!-- Left side: App name/logo -->
+        <div class="flex items-center gap-2.5">
+            <div class="w-9 h-9 bg-indigo-600 rounded-xl flex items-center justify-center text-white shadow-indigo-200 shadow-lg transform rotate-3 hover:rotate-0 transition-transform duration-300">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path>
+                </svg>
+            </div>
+            <span class="text-xl font-black tracking-tight text-slate-800">To do App</span>
         </div>
 
-        <form method="POST" action="/logout">
-            @csrf
-            <button class="bg-red-500 hover:bg-red-600 transition text-white px-4 py-2 rounded-lg shadow-sm">
-                Logout
+        <!-- Right side: Profile button -->
+        <div class="relative" id="profile-dropdown">
+            <button onclick="toggleDropdown()" class="flex items-center gap-2.5 px-4 py-2 bg-white hover:bg-slate-50 text-slate-700 font-bold rounded-xl transition-all duration-200 border border-slate-200 hover:border-indigo-200 focus:outline-none shadow-sm group">
+                <div class="w-8 h-8 rounded-lg bg-indigo-50 flex items-center justify-center text-indigo-600 group-hover:bg-indigo-100 transition-colors">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                    </svg>
+                </div>
+                <span class="text-sm">Profile</span>
+                <svg class="w-4 h-4 text-slate-400 group-hover:text-indigo-400 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                </svg>
             </button>
-        </form>
+
+            <!-- Dropdown Menu -->
+            <div id="dropdown-menu" class="hidden absolute right-0 mt-2 w-52 bg-white border border-slate-100 rounded-2xl shadow-xl py-2 z-50 animate-in fade-in slide-in-from-top-2 duration-200">
+                <div class="px-4 py-3 border-b border-slate-50 mb-1">
+                    <p class="text-xs text-slate-400 font-medium uppercase tracking-wider mb-0.5">Signed in as</p>
+                    <p class="text-sm font-bold text-slate-800 truncate">{{ Auth::user()->name }}</p>
+                    <p class="text-xs text-slate-500 truncate">{{ Auth::user()->email }}</p>
+                </div>
+
+                <div class="px-2">
+                    <form method="POST" action="/logout">
+                        @csrf
+                        <button type="submit" class="w-full text-left px-3 py-2.5 text-sm text-red-600 font-semibold hover:bg-red-50 rounded-xl transition-colors flex items-center gap-3 group">
+                            <div class="w-8 h-8 rounded-lg bg-red-50 flex items-center justify-center group-hover:bg-red-100 transition-colors">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
+                                </svg>
+                            </div>
+                            Logout
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
 
     </div>
 </nav>
 
-<div class="h-20"></div>
+<script>
+function toggleDropdown() {
+    const menu = document.getElementById('dropdown-menu');
+    menu.classList.toggle('hidden');
+}
 
+// Close dropdown when clicking outside
+window.addEventListener('click', function(e) {
+    const dropdown = document.getElementById('profile-dropdown');
+    const menu = document.getElementById('dropdown-menu');
+    if (dropdown && !dropdown.contains(e.target)) {
+        menu.classList.add('hidden');
+    }
+});
+</script>
+
+<!-- BULLETPROOF SPACER: Forces content down regardless of Tailwind compilation -->
+<div style="height: 100px; width: 100%; display: block; flex-shrink: 0;"></div>
 
 <!-- MAIN WRAPPER -->
-<div class="max-w-3xl w-full mx-auto px-4 flex flex-col items-center">
+<div class="max-w-3xl w-full mx-auto px-4 flex flex-col items-center relative">
 
-
-
-    <!-- DASHBOARD (FORCED HORIZONTAL ROW) -->
-    <div class="flex flex-wrap md:flex-nowrap gap-4 mb-10 w-full justify-between">
-
-    <div class="flex-1 bg-white border rounded-xl shadow-sm hover:shadow-md transition p-5 text-center min-w-[140px] mx-1">
-        <p class="text-sm text-gray-500">Total Tasks</p>
-        <p class="text-3xl font-bold text-blue-600 mt-1">
-            {{ $todos->count() }}
-        </p>
+    <!-- VIEW TOGGLE BUTTON -->
+    <div class="w-full flex justify-start mb-2">
+        <button id="mode-toggle-btn" onclick="toggleViewMode()" class="bg-white hover:bg-slate-50 text-slate-700 font-bold px-4 py-2.5 rounded-xl border border-slate-200 transition-all duration-200 flex items-center gap-2 shadow-sm hover:shadow-md focus:outline-none">
+            <svg class="w-5 h-5 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16"></path></svg>
+            <span>View Tasks</span>
+        </button>
     </div>
 
-    <div class="flex-1 bg-white border rounded-xl shadow-sm hover:shadow-md transition p-5 text-center min-w-[140px] mx-1">
-        <p class="text-sm text-gray-500">Completed</p>
-        <p class="text-3xl font-bold text-green-600 mt-1">
-            {{ $todos->where('status', 'completed')->count() }}
-        </p>
+    <!-- HEADER (section title) -->
+    <div class="py-4 mb-6 w-full">
+        <h1 class="text-3xl font-black text-slate-800 tracking-tight">My Tasks</h1>
+        <p class="text-sm text-slate-500 mt-1 font-medium">Organize your day like a pro ⚡</p>
     </div>
 
-    <div class="flex-1 bg-white border rounded-xl shadow-sm hover:shadow-md transition p-5 text-center min-w-[140px] mx-1">
-        <p class="text-sm text-gray-500">Pending</p>
-        <p class="text-3xl font-bold text-yellow-500 mt-1">
-            {{ $todos->where('status', 'pending')->count() }}
-        </p>
-    </div>
 
-    <div class="flex-1 bg-white border rounded-xl shadow-sm hover:shadow-md transition p-5 text-center min-w-[140px] mx-1">
-        <p class="text-sm text-gray-500">Todo</p>
-        <p class="text-3xl font-bold text-gray-700 mt-1">
-            {{ $todos->where('status', 'todo')->count() }}
-        </p>
-    </div>
 
-</div>
 
-    <!-- HEADER (sticky feel section title) -->
-    <div class="sticky top-20 z-10 bg-[#f6f7fb] py-4 mb-6 w-full">
-        <h1 class="text-2xl font-bold text-gray-800">My Tasks</h1>
-        <p class="text-sm text-gray-500 mt-1">Organize your day like a pro ⚡</p>
+
+
+    <!-- DASHBOARD (Always Visible) -->
+    <div class="flex flex-wrap md:flex-nowrap gap-4 mb-14 w-full justify-between animate-in fade-in slide-in-from-top-4 duration-500">
+        <div class="flex-1 bg-white border border-slate-100 rounded-2xl shadow-sm hover:shadow-md transition-all p-5 text-center min-w-[140px]">
+            <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Total Tasks</p>
+            <p class="text-3xl font-black text-indigo-600 mt-1">
+                {{ $total }}
+            </p>
+        </div>
+
+        <div class="flex-1 bg-white border border-slate-100 rounded-2xl shadow-sm hover:shadow-md transition-all p-5 text-center min-w-[140px]">
+            <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Completed</p>
+            <p class="text-3xl font-black text-emerald-500 mt-1">
+                {{ $completedCount }}
+            </p>
+        </div>
+
+        <div class="flex-1 bg-white border border-slate-100 rounded-2xl shadow-sm hover:shadow-md transition-all p-5 text-center min-w-[140px]">
+            <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Pending</p>
+            <p class="text-3xl font-black text-amber-500 mt-1">
+                {{ $pendingCount }}
+            </p>
+        </div>
+
+        <div class="flex-1 bg-white border border-slate-100 rounded-2xl shadow-sm hover:shadow-md transition-all p-5 text-center min-w-[140px]">
+            <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Todo</p>
+            <p class="text-3xl font-black text-slate-600 mt-1">
+                {{ $todoCount }}
+            </p>
+        </div>
     </div>
 
 
     <!-- ADD FORM (card style like Notion) -->
-    <div class="bg-white border rounded-xl p-6 shadow-sm mb-8 hover:shadow-md transition w-full max-w-xl mx-auto flex flex-col items-stretch">
+    <div class="add-mode-element bg-white border rounded-xl p-6 shadow-sm mb-8 hover:shadow-md transition w-full max-w-xl mx-auto flex flex-col items-stretch animate-in fade-in zoom-in-95 duration-300">
 
         <form method="POST" action="/todos" class="space-y-3">
             @csrf
@@ -118,8 +180,8 @@
     </div>
 
 
-    <!-- FILTERS -->
-    <div class="flex gap-2 mb-8 flex-wrap w-full justify-center">
+    <!-- FILTERS & SEPARATOR -->
+    <div class="view-mode-element flex gap-2 mt-16 pt-10 border-t border-slate-200/60 mb-4 flex-wrap w-full justify-center animate-in fade-in duration-300" style="display: none;">
 
         @foreach([
             '' => 'All',
@@ -129,7 +191,7 @@
             'completed' => 'Completed'
         ] as $key => $label)
 
-            <a href="/todos{{ $key ? '?status='.$key : '' }}"
+            <a href="/todos{{ $key ? '?status='.$key : '?view=true' }}"
                class="px-4 py-2 rounded-full text-sm transition
                {{ $status === $key ? 'bg-gray-900 text-white' : 'bg-white border text-gray-600 hover:bg-gray-100' }}">
                 {{ $label }}
@@ -142,7 +204,7 @@
 
 
         <!-- TODO LIST -->
-        <div class="flex flex-col items-center w-full">
+        <div class="view-mode-element flex flex-col items-center w-full animate-in fade-in duration-300" style="display: none;">
             <div class="w-full flex flex-col gap-5 max-w-xl">
                 @forelse ($todos as $todo)
                 @php
@@ -247,6 +309,44 @@
         </div>
 
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Automatically switch to view mode if interacting with tasks (edit, status filter)
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.has('edit') || urlParams.has('status') || urlParams.has('view')) {
+            toggleViewMode(true);
+        }
+    });
+
+    let isViewMode = false;
+    function toggleViewMode(forceView = null) {
+        if (forceView !== null) {
+            isViewMode = forceView;
+        } else {
+            isViewMode = !isViewMode;
+        }
+
+        const viewElements = document.querySelectorAll('.view-mode-element');
+        const addElements = document.querySelectorAll('.add-mode-element');
+        const btnText = document.querySelector('#mode-toggle-btn span');
+        const btnIcon = document.querySelector('#mode-toggle-btn svg');
+
+        if (isViewMode) {
+            // Show View Mode
+            addElements.forEach(el => el.style.display = 'none');
+            viewElements.forEach(el => el.style.display = 'flex');
+            btnText.textContent = 'Add Task';
+            btnIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>';
+        } else {
+            // Show Add Mode
+            addElements.forEach(el => el.style.display = 'flex');
+            viewElements.forEach(el => el.style.display = 'none');
+            btnText.textContent = 'View Tasks';
+            btnIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16"></path>';
+        }
+    }
+</script>
 
 </body>
 </html>

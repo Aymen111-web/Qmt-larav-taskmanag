@@ -15,9 +15,21 @@
 
 <body class="bg-gray-100 flex items-center justify-center min-h-screen">
 
-    <!-- Navbar Title -->
-    <nav class="w-full bg-white border-b shadow-sm py-4 flex justify-center items-center fixed top-0 left-0 z-20">
-        <span class="text-2xl font-extrabold text-gray-900 text-center">Task Managment System</span>
+    <!-- NAVBAR (consistent branding) -->
+    <nav class="bg-white border-b border-slate-100 shadow-sm px-6 py-3 fixed top-0 left-0 w-full z-50">
+        <div class="max-w-6xl mx-auto flex justify-center items-center">
+            <!-- Centered App name/logo -->
+            <div class="flex items-center gap-2.5">
+                <div class="w-9 h-9 bg-indigo-600 rounded-xl flex items-center justify-center text-white shadow-indigo-200 shadow-lg transform rotate-3">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path>
+                    </svg>
+                </div>
+                <div class="text-center">
+                    <span class="text-xl font-black tracking-tight text-slate-800">Task management system</span>
+                </div>
+            </div>
+        </div>
     </nav>
     <div class="h-16"></div>
 
