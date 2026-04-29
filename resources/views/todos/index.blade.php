@@ -135,6 +135,13 @@ window.addEventListener('click', function(e) {
         </div>
 
         <div class="flex-1 bg-white border border-slate-100 rounded-2xl shadow-sm hover:shadow-md transition-all p-5 text-center min-w-[140px]">
+            <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Overdue</p>
+            <p class="text-3xl font-black text-red-500 mt-1">
+                {{ $overdueCount }}
+            </p>
+        </div>
+
+        <div class="flex-1 bg-white border border-slate-100 rounded-2xl shadow-sm hover:shadow-md transition-all p-5 text-center min-w-[140px]">
             <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Completed</p>
             <p class="text-3xl font-black text-emerald-500 mt-1">
                 {{ $completedCount }}

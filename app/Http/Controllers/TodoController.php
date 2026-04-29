@@ -75,6 +75,7 @@ public function index(Request $request)
     $total = $allTodos->count();
     $todoCount = $allTodos->where('computed_status', 'todo')->count();
     $pendingCount = $allTodos->where('computed_status', 'pending')->count();
+    $overdueCount = $allTodos->where('computed_status', 'overdue')->count();
     $completedCount = $allTodos->where('computed_status', 'completed')->count();
 
     return view('todos.index', compact(
@@ -82,6 +83,7 @@ public function index(Request $request)
         'total',
         'todoCount',
         'pendingCount',
+        'overdueCount',
         'completedCount',
         'status'
     ));
@@ -174,4 +176,3 @@ private function syncStatus($todo)
     return 'todo';
 }
 }
-
