@@ -36,7 +36,7 @@
             <div class="bg-white rounded-lg shadow-lg p-8 max-w-sm w-full text-center">
                 <div class="text-green-600 text-3xl mb-2">&#10003;</div>
                 <div class="text-lg font-semibold mb-2">{{ session('success') }}</div>
-                <button onclick="document.getElementById('successModal').classList.add('hidden')" class="mt-4 px-6 py-2 bg-green-500 text-white rounded hover:bg-green-600">OK</button>
+                <button onclick="window.location.href='/login'" class="mt-4 px-6 py-2 bg-green-500 text-white rounded hover:bg-green-600">OK</button>
             </div>
         </div>
     @endif
