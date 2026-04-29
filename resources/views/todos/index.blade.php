@@ -20,13 +20,14 @@
     <div class="max-w-6xl mx-auto flex justify-between items-center">
 
         <!-- Left side: App name/logo -->
-        <div class="flex items-center gap-2.5">
+        <div class="flex items-center ">
             <div class="w-9 h-9 bg-indigo-600 rounded-xl flex items-center justify-center text-white shadow-indigo-200 shadow-lg transform rotate-3 hover:rotate-0 transition-transform duration-300">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path>
                 </svg>
             </div>
             <span class="text-xl font-black tracking-tight text-slate-800">To do App</span>
+
         </div>
 
         <!-- Right side: Profile button -->
@@ -121,9 +122,9 @@ window.addEventListener('click', function(e) {
         </div>
 
         <div class="flex-1 bg-white border border-slate-100 rounded-2xl shadow-sm hover:shadow-md transition-all p-5 text-center min-w-[140px]">
-            <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Completed</p>
-            <p class="text-3xl font-black text-emerald-500 mt-1">
-                {{ $completedCount }}
+            <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Todo</p>
+            <p class="text-3xl font-black text-slate-600 mt-1">
+                {{ $todoCount }}
             </p>
         </div>
 
@@ -135,9 +136,9 @@ window.addEventListener('click', function(e) {
         </div>
 
         <div class="flex-1 bg-white border border-slate-100 rounded-2xl shadow-sm hover:shadow-md transition-all p-5 text-center min-w-[140px]">
-            <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Todo</p>
-            <p class="text-3xl font-black text-slate-600 mt-1">
-                {{ $todoCount }}
+            <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Completed</p>
+            <p class="text-3xl font-black text-emerald-500 mt-1">
+                {{ $completedCount }}
             </p>
         </div>
     </div>
