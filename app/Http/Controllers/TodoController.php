@@ -144,7 +144,7 @@ public function update(Request $request, $id)
         'description' => $request->description,
     ]);
 
-    return back();
+    return redirect('/todos');
 }
 public function complete($id)
 {
