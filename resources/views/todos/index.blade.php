@@ -185,11 +185,11 @@ window.addEventListener('click', function(e) {
 
         @php
             $filterStyles = [
-                '' => 'bg-slate-900 text-white border-slate-900',
-                'todo' => 'bg-slate-900 text-white border-slate-900',
-                'pending' => 'bg-yellow-400 text-yellow-950 border-yellow-400',
-                'overdue' => 'bg-red-500 text-white border-red-500',
-                'completed' => 'bg-green-500 text-white border-green-500',
+                '' => 'background-color: #111827; color: #ffffff; border-color: #111827;',
+                'todo' => 'background-color: #111827; color: #ffffff; border-color: #111827;',
+                'pending' => 'background-color: #facc15; color: #422006; border-color: #facc15;',
+                'overdue' => 'background-color: #ef4444; color: #ffffff; border-color: #ef4444;',
+                'completed' => 'background-color: #22c55e; color: #ffffff; border-color: #22c55e;',
             ];
         @endphp
 
@@ -207,7 +207,8 @@ window.addEventListener('click', function(e) {
 
             <a href="/todos{{ $key ? '?status='.$key : '?view=true' }}"
                class="px-4 py-2 rounded-full text-sm border transition
-               {{ $isActive ? $filterStyles[$key] : 'bg-white border-slate-200 text-gray-600 hover:bg-gray-100' }}">
+               {{ !$isActive ? 'bg-white border-slate-200 text-gray-600 hover:bg-gray-100' : '' }}"
+               style="{{ $isActive ? $filterStyles[$key] : '' }}">
                 {{ $label }}
             </a>
 
