@@ -183,6 +183,16 @@ window.addEventListener('click', function(e) {
     <!-- FILTERS & SEPARATOR -->
     <div class="view-mode-element flex gap-2 mt-16 pt-10 border-t border-slate-200/60 mb-4 flex-wrap w-full justify-center animate-in fade-in duration-300" style="display: none;">
 
+        @php
+            $filterStyles = [
+                '' => 'bg-slate-900 text-white border-slate-900',
+                'todo' => 'bg-gray-500 text-white border-gray-500',
+                'pending' => 'bg-yellow-400 text-yellow-950 border-yellow-400',
+                'overdue' => 'bg-red-500 text-white border-red-500',
+                'completed' => 'bg-green-500 text-white border-green-500',
+            ];
+        @endphp
+
         @foreach([
             '' => 'All',
             'todo' => 'Todo',
@@ -191,9 +201,13 @@ window.addEventListener('click', function(e) {
             'completed' => 'Completed'
         ] as $key => $label)
 
+            @php
+                $isActive = ($key === '' && !$status) || $status === $key;
+            @endphp
+
             <a href="/todos{{ $key ? '?status='.$key : '?view=true' }}"
-               class="px-4 py-2 rounded-full text-sm transition
-               {{ $status === $key ? 'bg-gray-900 text-white' : 'bg-white border text-gray-600 hover:bg-gray-100' }}">
+               class="px-4 py-2 rounded-full text-sm border transition
+               {{ $isActive ? $filterStyles[$key] : 'bg-white border-slate-200 text-gray-600 hover:bg-gray-100' }}">
                 {{ $label }}
             </a>
 
