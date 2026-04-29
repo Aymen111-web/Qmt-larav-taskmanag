@@ -186,7 +186,7 @@ window.addEventListener('click', function(e) {
         @php
             $filterStyles = [
                 '' => 'bg-slate-900 text-white border-slate-900',
-                'todo' => 'bg-gray-500 text-white border-gray-500',
+                'todo' => 'bg-slate-900 text-white border-slate-900',
                 'pending' => 'bg-yellow-400 text-yellow-950 border-yellow-400',
                 'overdue' => 'bg-red-500 text-white border-red-500',
                 'completed' => 'bg-green-500 text-white border-green-500',
