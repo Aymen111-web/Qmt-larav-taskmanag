@@ -111,7 +111,6 @@ window.addEventListener('click', function(e) {
 
 
 
-
     <!-- DASHBOARD (Always Visible) -->
     <div class="flex flex-wrap md:flex-nowrap gap-4 mb-14 w-full justify-between animate-in fade-in slide-in-from-top-4 duration-500">
         <div class="flex-1 bg-white border border-slate-100 rounded-2xl shadow-sm hover:shadow-md transition-all p-5 text-center min-w-[140px]">
