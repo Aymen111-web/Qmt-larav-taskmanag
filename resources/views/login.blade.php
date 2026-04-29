@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>Login</title>
+    <link rel="icon" href="{{ asset('note.jpg') }}" type="image/jpeg">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -16,7 +17,7 @@
 
     <!-- Navbar Title -->
     <nav class="w-full bg-white border-b shadow-sm py-4 flex justify-center items-center fixed top-0 left-0 z-20">
-        <span class="text-2xl font-extrabold text-gray-900 text-center">To do App</span>
+        <span class="text-2xl font-extrabold text-gray-900 text-center">Task Managment System</span>
     </nav>
     <div class="h-16"></div>
 

@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>Register</title>
+    <link rel="icon" href="{{ asset('note.jpg') }}" type="image/jpeg">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
