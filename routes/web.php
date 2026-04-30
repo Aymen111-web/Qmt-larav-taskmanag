@@ -29,9 +29,10 @@ Route::get('/register', function () {
 
 Route::get('/login', function () {
     return view('login');
-});
+})->name('login');
 
 
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware('auth');
+
+Route::get('/todos', function () {
+    return view('todos');
+})->middleware('auth');
