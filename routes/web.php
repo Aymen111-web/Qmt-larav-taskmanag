@@ -33,6 +33,3 @@ Route::get('/login', function () {
 
 
 
-Route::get('/todos', function () {
-    return view('todos');
-})->middleware('auth');
