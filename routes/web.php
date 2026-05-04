@@ -16,7 +16,7 @@ Route::post('/logout', [AuthController::class, 'logout']);
     Route::post('/todos/{id}/delete', [TodoController::class, 'delete']);
     Route::post('/todos/{id}/update', [TodoController::class, 'update']);
     Route::post('/todos/{id}/status', [TodoController::class, 'updateStatus']);
-    Route::post('/todos/{id}/complete', [TodoController::class, 'complete']);
+
 });
 Route::get('/', function () {
     return view('login');
