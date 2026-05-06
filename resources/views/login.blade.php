@@ -16,7 +16,7 @@
 <body class="bg-gray-100 flex items-center justify-center min-h-screen">
 
     <!-- NAVBAR (consistent branding) -->
-    <nav class="bg-white border-b border-slate-100 shadow-sm px-6 py-3 fixed top-0 left-0 w-full z-50">
+    <nav class="bg-white border-b border-slate-100 shadow-sm px-7 py-3 fixed top-0 left-0 w-full z-50">
         <div class="max-w-6xl mx-auto flex justify-center items-center">
             <!-- Centered App name/logo -->
             <div class="flex items-center gap-2.5">
@@ -43,7 +43,7 @@
         </div>
     @endif
 
-<div class="w-full max-w-md bg-white rounded-2xl shadow-xl p-8">
+<div class="w-full max-w-md bg-white rounded-2xl shadow-xl p-10">
 
     <h1 class="text-3xl font-bold text-center text-gray-800 mb-6">
           Welcome Back!
